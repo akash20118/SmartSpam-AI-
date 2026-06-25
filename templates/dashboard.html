@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSpam AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🛡 SmartSpam AI</h1>
+        <p>AI Powered Spam Detection & Security Analysis</p>
+    </div>
+
+    <div class="accuracy-card">
+        <h3>Model Accuracy</h3>
+        <h2>{{ accuracy }}%</h2>
+    </div>
+
+    <form method="POST">
+
+        <textarea
+            name="message"
+            placeholder="Paste SMS or suspicious message here..."
+            required></textarea>
+
+        <button type="submit">
+            Analyze Message
+        </button>
+
+    </form>
+
+    {% if prediction %}
+
+    <div class="results-grid">
+
+        <div class="card">
+            <h3>Prediction</h3>
+            <h2>{{ prediction }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>Confidence</h3>
+
+            <div class="meter">
+                <div class="meter-fill" style="width: {{ confidence }}%;"></div>
+            </div>
+
+<h2>{{ confidence }}%</h2>
+        </div>
+
+        <div class="card">
+            <h3>Category</h3>
+            <h2>{{ category }}</h2>
+        </div>
+
+    </div>
+
+    <div class="reason-card">
+
+        <h3>Why was this classified?</h3>
+
+        <ul>
+            {% for reason in reasons %}
+            <li>{{ reason }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -42,3 +42,4 @@ AI Powered Spam Detection System built using Flask and Machine Learning.
 
 pip install -r requirements.txt
 python app.py
+```
